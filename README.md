@@ -67,9 +67,10 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **6-Block Evaluation** | Role summary, CV match, level strategy, comp research, personalization, interview prep (STAR+R) |
 | **Interview Story Bank** | Accumulates STAR+Reflection stories across evaluations -- 5-10 master stories that answer any behavioral question |
 | **Negotiation Scripts** | Salary negotiation frameworks, geographic discount pushback, competing offer leverage |
-| **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design |
+| **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design, plus an adversarial reviewer pass (independent subagent critiques the draft against the JD/company before finalizing) |
 | **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
+| **Gmail Reply Sync** | Scans your inbox (IMAP) for interview/offer/rejection/assessment replies from tracked companies and flags them for the tracker -- catches responses that would otherwise sit unread |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
 | **Pipeline Integrity** | Automated merge, dedup, status normalization, health checks |
@@ -122,6 +123,7 @@ Career-ops is a single slash command with multiple modes:
 /career-ops tracker        → View application status
 /career-ops apply          → Fill application forms with AI
 /career-ops pipeline       → Process pending URLs
+/career-ops followup       → Follow-up cadence + Gmail reply sync
 /career-ops contacto       → LinkedIn outreach message
 /career-ops deep           → Deep company research
 /career-ops training       → Evaluate a course/cert
