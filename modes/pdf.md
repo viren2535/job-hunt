@@ -21,6 +21,13 @@
 12. Build competency grid from JD requirements (6-8 keyword phrases), prioritizing `existing` and `supportedByResume` skills from Step 4 — never a `gap` skill
 13. Inject keywords naturally into existing achievements (NEVER invent)
 14. Apply the six-second clarity gate from `modes/heuristics/recruiter-side.md`: top third must make target role, strongest fit, and proof obvious
+14.5. **Reviewer pass (adversarial second opinion, fork addition):** spawn an independent subagent (Agent tool, `general-purpose`, foreground) with the full JD, the company name, and the tailored draft (summary, reordered bullets, competency grid). This is a different check than Step 18's fact gate — that gate verifies claims are true; this pass checks whether the true claims are *convincing and correctly targeted*. Ask the subagent to:
+    - briefly research the company (WebSearch/WebFetch: what they build, tone, recent priorities)
+    - flag generic filler phrasing that carries no signal
+    - flag any claim that can't be traced to `cv.md`/`article-digest.md` (a second check alongside Step 18's mechanical fact gate, not a replacement for it)
+    - flag JD keywords the draft still doesn't cover, and where they could be injected honestly
+    - flag seniority/framing mismatches (e.g. IC-junior language against a JD asking for leadership, or vice versa)
+    The subagent has none of this conversation's context — give it the JD, company, and draft in full. Revise the draft against the feedback before continuing to Step 15. Purely cosmetic feedback that changes nothing material can be skipped silently; feedback that changes the summary/bullets should be applied.
 15. Read `name` from `config/profile.yml` → normalize to kebab-case lowercase (e.g. "John Doe" → "john-doe") → `{candidate}`
 16. Build the render payload (see the **JSON Input Schema** below) from the tailored content — emit compact structured JSON, **not** full HTML markup — and write it to `/tmp/cv-{candidate}-{company}.json`
 17. Run: `node build-cv-html.mjs /tmp/cv-{candidate}-{company}.json output/cv-{candidate}-{company}.html {template}` — where `{template}` is the path printed by **Selecting the template** below (omit the argument to use the base `cv-template.html`). The script merges the payload into that template, owning every tag, CSS class, and the HTML escaping. Write to `output/` (NOT a temp dir — the recorded HTML is what the dashboard's `D` hotkey regenerates from, so it must survive temp cleanup)

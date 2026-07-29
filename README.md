@@ -1,83 +1,9 @@
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/wordmark-dark.svg"><img src="docs/wordmark-light.svg" alt="career-ops" width="250" height="56"></picture></p>
+# Career-Ops (Yuvraj's fork)
 
-<div align="center">
-
-[English](README.md) | [Español](README.es.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Português (Brasil)](README.pt-BR.md) | [한국어](README.ko-KR.md) | [日本語](README.ja.md) | [简体中文](README.cn.md) | [繁體中文](README.zh-TW.md) | [Українська](README.ua.md) | [Русский](README.ru.md) | [Polski](README.pl.md) | [Dansk](README.da.md) | [தமிழ்](README.ta.md) | [العربية](README.ar.md) | [हिन्दी](README.hi.md) | [Türkçe](README.tr.md)
-
-</div>
-
-<p align="center">
-  <a href="https://x.com/santifer"><img src="docs/hero-banner.jpg" alt="career-ops Multi-Agent Job Search System" width="800"></a>
-</p>
-
-<p align="center">
-  <em>I spent months applying to jobs the hard way. So I engineered the system I wish I had.</em><br>
-  Companies use AI to filter candidates. <strong>I just gave candidates AI to <em>choose</em> companies.</strong><br>
-  <em>Now it's open source.</em>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/25195" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/25195" alt="santifer%2Fcareer-ops | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-</p>
-
-<p align="center">
-  <a href="https://www.producthunt.com/products/santifer-io?utm_source=badge-featured&utm_medium=badge" target="_blank" rel="noopener noreferrer"><img src="docs/press/producthunt.svg" alt="career-ops on Claude | Product Hunt" style="width: 206px; height: 54px; vertical-align: middle;" width="206" height="54"/></a>
-</p>
-
-<p align="center"><sub>FEATURED IN</sub></p>
-
-<p align="center">
-  <a href="https://wired.com.gr/article/to-ai-ergaleio-pou-fernei-epanastasi-ston-tropo-pou-psachnoume-douleia/" rel="noopener noreferrer nofollow"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/press/wired-dark.svg"><img src="docs/press/wired.svg" alt="WIRED" height="32"></picture></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.businessinsider.com/how-i-built-tool-filter-job-listings-landed-head-ai-2026-4" rel="noopener noreferrer nofollow"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/press/business-insider-dark.svg"><img src="docs/press/business-insider.svg" alt="Business Insider" height="32"></picture></a>
-</p>
-
----
+> Fork of [santifer/career-ops](https://github.com/santifer/career-ops), MIT-licensed. Base system + credit belongs to Santiago Fernández de Valderrama — see [About](#about) below. This fork adds a live Gmail-reply scanner and a LinkedIn/email outreach pipeline, built while running my own job search at real volume against the India market. See [What This Fork Adds](#what-this-fork-adds).
 
 <p align="center">
   <img src="docs/demo.gif" alt="career-ops Demo" width="800">
-</p>
-
-<p align="center"><strong>740+ job listings evaluated · 100+ personalized CVs · 1 dream role landed</strong></p>
-
-<p align="center">
-  <a href="https://warpchart.dev/hq">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://warpchart.dev/api/chart?theme=dark&v=3">
-      <img alt="Live star telemetry of santifer/career-ops" src="https://warpchart.dev/api/chart?theme=light&v=3" loading="lazy">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://discord.gg/8pRpHETxa4"><img src="https://img.shields.io/badge/Join_the_community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/santifer/career-ops/releases/latest"><img src="https://img.shields.io/npm/v/%40santifer%2Fcareer-ops?style=for-the-badge&labelColor=2b3137&color=2ea44f&label=release" alt="Latest release"></a>
-</p>
-
-<p align="center">
-  <a href="https://claude.com/claude-code"><img src="https://img.shields.io/badge/Built_with-Claude_Code-000?style=for-the-badge&logo=anthropic&logoColor=white" alt="Built with Claude Code"></a>
-</p>
-
-<p align="center">
-  <sub>Also runs on any agent-skill-standard CLI. See <a href="docs/SUPPORTED_CLIS.md">Supported CLIs</a>.</sub><br>
-  <img src="https://img.shields.io/badge/Claude_Code-000?style=flat&logo=anthropic&logoColor=white" alt="Claude Code">
-  <img src="https://img.shields.io/badge/OpenCode-111827?style=flat&logo=terminal&logoColor=white" alt="OpenCode">
-  <img src="https://img.shields.io/badge/Antigravity_CLI-4285F4?style=flat&logo=google&logoColor=white" alt="Antigravity CLI">
-  <img src="https://img.shields.io/badge/Codex-412991?style=flat&logo=openai&logoColor=white" alt="Codex">
-  <img src="https://img.shields.io/badge/Qwen-615CED?style=flat" alt="Qwen">
-  <img src="https://img.shields.io/badge/Kimi-FF4B4B?style=flat" alt="Kimi">
-  <img src="https://img.shields.io/badge/GitHub_Copilot-000?style=flat&logo=githubcopilot&logoColor=white" alt="GitHub Copilot">
-  <img src="https://img.shields.io/badge/Grok_Build_CLI-000?style=flat&logo=x&logoColor=white" alt="Grok Build CLI">
-  <br>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white" alt="Go">
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat&logo=playwright&logoColor=white" alt="Playwright">
-  <img src="https://img.shields.io/badge/Bubble_Tea-FF75B5?style=flat&logo=go&logoColor=white" alt="Bubble Tea">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
-  <a href="TRADEMARK.md"><img src="https://img.shields.io/badge/Trademark-Policy-blue.svg" alt="Trademark Policy"></a>
 </p>
 
 ## What Is This
@@ -97,7 +23,9 @@ career-ops is agentic: whichever AI coding CLI you choose navigates career pages
 
 > **Heads up: the first evaluations won't be great.** The system doesn't know you yet. Feed it context -- your CV, your career story, your proof points, your preferences, what you're good at, what you want to avoid. The more you nurture it, the better it gets. Think of it as onboarding a new recruiter: the first week they need to learn about you, then they become invaluable.
 
-Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. [Read the full case study](https://santifer.io/career-ops-system).
+The base system above is from [santifer/career-ops](https://github.com/santifer/career-ops) — built by Santiago Fernández de Valderrama, who used it to evaluate 740+ offers and land a Head of Applied AI role ([case study](https://santifer.io/career-ops-system)).
+
+This fork adds what running it at real volume in a competitive market (India, junior/mid-level, 2 YOE) required: a Gmail scanner that catches interview/rejection replies sitting unread instead of relying on manual paste, and a LinkedIn + email outreach pipeline for warm intros. See [What This Fork Adds](#what-this-fork-adds) below.
 
 ## The CareerOps Manifesto
 
@@ -126,6 +54,17 @@ career-ops is the first reference implementation of [the CareerOps Manifesto](ht
 | **Plugin System**        | Opt-in integrations (Gmail, Notion, Apify + a community registry), disabled by default -- see [docs/PLUGINS.md](docs/PLUGINS.md)        |
 | **Beyond the CV**        | Company research ([`deep`](modes/deep.md)) surfaces AI strategy, recent moves, engineering culture, and the angle your profile should take. Contact discovery ([`contacto`](modes/contacto.md)) identifies the hiring manager, recruiter, or team peer worth reaching out to and drafts a ≤300-character LinkedIn message tuned to each contact type. Formal application email drafts ([`email`](modes/email.md)) turn an evaluated report or pasted JD into a subject line, body, and attachment checklist without sending, submitting, or clicking anything. Applications get you in the queue; research gets you a conversation. |
 
+## What This Fork Adds
+
+Everything above is the base system. On top of it, this fork adds:
+
+| Addition | What it does | Files |
+|----------|---------------|-------|
+| **Gmail Reply Sync** | Implements the documented-but-unbuilt Gmail scanner for the base system's own [`reply-watch`](modes/reply-watch.md) pipeline — the base only shipped a manual paste-in fallback (`paste-reply.mjs`) since a live scanner "requires OAuth inbox-read access" (its words). This uses an IMAP app password instead of full OAuth: scans the inbox since the last sync, normalizes new messages into the exact candidate shape `reply-watch.mjs` already classifies and matches to tracker rows — no duplicate classifier, just the missing input source | `gmail-sync.mjs` |
+| **LinkedIn Outreach Pipeline** | Generates search queries from your profile, finds 1st/2nd-degree connections at target companies, sends connection requests via Playwright, tracks everything in SQLite | `outreach.mjs`, `outreach-db.mjs`, `outreach-query-gen.mjs`, `send-outreach.mjs` |
+| **Email Discovery + Sending** | Guesses + SMTP-verifies company email addresses, sends outreach emails via Gmail SMTP with rate limiting and randomized delays | `email-discover.mjs`, `send-email.mjs` |
+| **CV Reviewer Pass** | An independent subagent critiques the tailored CV draft against the JD and quick company research before finalizing — checks whether the true, fact-gate-passed claims are actually convincing and correctly targeted, not just true | `modes/pdf.md` step 14.5 |
+
 ## Quick Start
 
 **Fastest way — one command:**
@@ -151,7 +90,7 @@ claude   # or codex / qwen / opencode / agy / grok — open your AI CLI here
 <summary><b>Prefer to set it up manually? (git clone)</b></summary>
 
 ```bash
-git clone https://github.com/santifer/career-ops.git
+git clone https://github.com/Yuvraj3905/career-ops.git
 cd career-ops && npm install
 npx playwright install chromium   # only needed for PDF generation
 
@@ -397,6 +336,12 @@ career-ops/
 ├── batch/
 │   ├── batch-prompt.md          # Self-contained worker prompt
 │   └── batch-runner.sh          # Orchestrator script
+├── gmail-sync.mjs               # Gmail scanner input for reply-watch.mjs (fork addition)
+├── outreach.mjs                 # LinkedIn + email outreach orchestrator (fork addition)
+├── outreach-db.mjs              # SQLite layer for outreach leads (fork addition)
+├── send-outreach.mjs            # Playwright LinkedIn connection sender (fork addition)
+├── email-discover.mjs           # Email pattern guessing + SMTP verification (fork addition)
+├── send-email.mjs               # Gmail SMTP outreach sender (fork addition)
 ├── dashboard/                   # Go TUI pipeline viewer
 ├── data/                        # Your tracking data (gitignored)
 ├── reports/                     # Evaluation reports (gitignored)
@@ -445,15 +390,11 @@ No. career-ops is a filter, not a spray-and-pray auto-applier. The AI evaluates,
 **Is career-ops free and open source?**
 Yes. career-ops is free and open source, and for the candidate it always will be — it is the first reference implementation of the [CareerOps Manifesto](https://career-ops.org/manifesto). Read it, and if it says what you believe, sign it.
 
-## About the Author
+## About
 
-I'm [Santiago Fernández de Valderrama Aparicio](https://santifer.io/about) (santifer) -- Head of Applied AI, former founder (built and sold a business that still runs with my name on it). I built career-ops to manage my own job search. It worked: I used it to land my current role.
+**The base system** was built by [Santiago Fernández de Valderrama Aparicio](https://santifer.io/about) (santifer) -- Head of Applied AI, former founder. He built career-ops to manage his own job search and used it to land his current role. Portfolio and other open source projects → [santifer.io](https://santifer.io). Curious how the upstream repo is maintained in ~4 hours a week? [Agentic maintenance: how career-ops is run by a fleet of AI agents](https://santifer.io/ai-agent-fleet).
 
-Curious how this repo is maintained in ~4 hours a week? Read [Agentic maintenance: how career-ops is run by a fleet of AI agents](https://santifer.io/ai-agent-fleet).
-
-My portfolio and other open source projects → [santifer.io](https://santifer.io)
-
-Wikidata: [Santiago Fernández de Valderrama Aparicio](https://www.wikidata.org/wiki/Q138710224) · [career-ops](https://www.wikidata.org/wiki/Q139007988).
+**This fork** is maintained by Yuvraj Singh -- SDE-1, building agentic AI/LLM systems and full-stack backends. I extended career-ops with the Gmail reply sync and outreach pipeline described above while running my own job search at real volume against the India market. [LinkedIn](https://www.linkedin.com/in/yuvraj3905/) · [GitHub](https://github.com/Yuvraj3905)
 
 ## Disclaimer
 
@@ -466,17 +407,7 @@ Wikidata: [Santiago Fernández de Valderrama Aparicio](https://www.wikidata.org/
 
 See [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md) for full details. This software is provided under the [MIT License](LICENSE) "as is", without warranty of any kind.
 
-## Contributors
-
-<a href="https://github.com/santifer/career-ops/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=santifer/career-ops" />
-</a>
-
-Every person who has shipped code, docs, translations or tests is listed in
-[CONTRIBUTORS.md](CONTRIBUTORS.md) — including non-code contributions, which
-the graph above cannot show.
-
-Got hired using career-ops? [Share your story!](https://github.com/santifer/career-ops/issues/new?template=i-got-hired.yml)
+Contributions to the base evaluation/CV/scan system belong upstream — see [santifer/career-ops](https://github.com/santifer/career-ops) and its [contributors](https://github.com/santifer/career-ops/graphs/contributors).
 
 ## License & Trademark
 
@@ -487,8 +418,8 @@ endorsement.
 
 ## Let's Connect
 
-[![Website](https://img.shields.io/badge/santifer.io-000?style=for-the-badge&logo=safari&logoColor=white)](https://santifer.io)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/santifer)
-[![X](https://img.shields.io/badge/X-000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/santifer)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/8pRpHETxa4)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hi@santifer.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yuvraj3905/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Yuvraj3905)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yuvraj202001@gmail.com)
+
+Questions about the base system, or want to contribute to it? → [santifer/career-ops](https://github.com/santifer/career-ops) · [Discord](https://discord.gg/8pRpHETxa4)

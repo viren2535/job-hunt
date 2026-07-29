@@ -87,6 +87,9 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 | `set-status.mjs` | Canonical tracker-row update: `node set-status.mjs <report#\|company> <State> [--note] [--force]` — strict states.yml validation, report-link mismatch guard, shared lock, atomic write |
 | `invite-match.mjs` | Fuzzy-match a pasted interview invite (company, date, req ID) against the tracker, ranking candidates when a company has multiple entries (JSON or `--summary`) |
 | `paste-reply.mjs` | Manual/no-Gmail input into reply-watch classification — normalizes a pasted/file email (subject/from/body) and appends to `data/reply-candidates.json`; never overwrites entries, never classifies, never touches the tracker |
+| `gmail-sync.mjs` | *(fork addition)* Automatic Gmail input into the same reply-watch pipeline — IMAP scan (app password) since the last sync, appends new candidates in the same shape as `paste-reply.mjs`; never classifies, never touches the tracker. See `modes/reply-watch.md` |
+| `outreach.mjs` / `outreach-db.mjs` / `outreach-query-gen.mjs` / `send-outreach.mjs` | *(fork addition)* LinkedIn outreach pipeline — query generation, SQLite lead tracking, Playwright connection sending |
+| `email-discover.mjs` / `send-email.mjs` | *(fork addition)* Email pattern discovery + SMTP verification, then Gmail SMTP sending for outreach leads |
 | `analyze-patterns.mjs` | Pattern analysis incl. per-ATS-vendor advance rate (JSON) |
 | `upskill.mjs` | Weighted skill-gap map from tracked reports; known skills from `cv.md`/`config/profile.yml` excluded (JSON) |
 | `stats.mjs` | Lifetime pipeline stats: tracker roll-up, canonical `ever*` funnel, scan totals, portal coverage, follow-up compliance, scan-run trends (JSON or `--summary`) |

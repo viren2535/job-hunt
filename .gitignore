@@ -36,6 +36,7 @@ bun.lock
 outreach-chrome/
 data/outreach.db
 data/gmail-sync-state.json
+data/reply-candidates.json
 
 # Claude Code local
 .claude/settings.local.json

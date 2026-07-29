@@ -54,7 +54,13 @@
     "build:dashboard": "node build-dashboard.mjs",
     "serve:dashboard": "cd dashboard && go run . --path ..",
     "postinstall": "npx playwright install chromium --with-deps || npx playwright install chromium --with-deps",
-    "manifesto": "node manifesto.mjs"
+    "manifesto": "node manifesto.mjs",
+    "outreach": "node outreach.mjs",
+    "outreach:send": "node send-outreach.mjs",
+    "outreach:login": "node send-outreach.mjs --login",
+    "outreach:query": "node outreach-query-gen.mjs",
+    "outreach:email": "node send-email.mjs",
+    "gmail:sync": "node gmail-sync.mjs"
   },
   "keywords": [
     "ai",
@@ -77,13 +83,17 @@
   "homepage": "https://santifer.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/santifer/career-ops"
+    "url": "https://github.com/Yuvraj3905/career-ops"
   },
   "license": "MIT",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
+    "better-sqlite3": "^12.9.0",
     "dotenv": "^17.0.0",
+    "imapflow": "^1.6.4",
     "js-yaml": "^4.1.1",
+    "mailparser": "^3.9.14",
+    "nodemailer": "^8.0.5",
     "playwright": "1.62.0"
   }
 }

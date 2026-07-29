@@ -19,6 +19,8 @@ Local-first, human-in-the-loop: **nothing here auto-updates without user confirm
 
 **Populating `data/reply-candidates.json` manually:** if you don't want to grant any tool mailbox access, run `node paste-reply.mjs` and paste (or point `--file` at) the raw text of a reply email. It normalizes the subject/from/body into the exact candidate shape above and appends it — it never classifies the reply itself and never runs `reply-watch.mjs` or touches the tracker.
 
+**Populating `data/reply-candidates.json` automatically (Gmail, fork addition):** if `config/outreach.yml` has `gmail_sync.enabled: true` and `GMAIL_APP_PASSWORD` (or `email.app_password`) is set, run `node gmail-sync.mjs` first. It scans the inbox over IMAP (app password, not full OAuth) since the last sync, normalizes each new message into the same candidate shape as `paste-reply.mjs`, and appends it — same division of labor: it never classifies and never touches `data/applications.md`. One-time setup: Gmail Settings -> Forwarding and POP/IMAP -> Enable IMAP. Run `node reply-watch.mjs` afterward as usual.
+
 ## Invocation
 
 Run the reply-watch command:
