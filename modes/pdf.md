@@ -15,6 +15,13 @@
 9. Reordena bullets de experiencia por relevancia al JD
 10. Construye competency grid desde requisitos del JD (6-8 keyword phrases)
 11. Inyecta keywords naturalmente en logros existentes (NUNCA inventa)
+11.5. **Reviewer pass (segunda opinión adversarial):** antes de generar el HTML final, lanza un subagent independiente (Agent tool, tipo `general-purpose`, foreground) con: el JD completo, el nombre de la empresa, y el borrador (summary reescrito, bullets reordenados, competency grid). Pide al subagent que:
+   - investigue la empresa brevemente (WebSearch/WebFetch: qué construyen, tono, prioridades recientes)
+   - marque frases genéricas o de relleno que no aporten señal
+   - marque cualquier claim que no pueda verificarse contra `cv.md` (posible invención)
+   - señale keywords del JD que el borrador no cubre y dónde podrían inyectarse honestamente
+   - señale mismatches de seniority/framing (ej. lenguaje de IC junior en una oferta que pide liderazgo, o viceversa)
+   El subagent no tiene el contexto de esta conversación — dale el JD, la empresa y el borrador completos en el prompt. Revisa el borrador según el feedback recibido ANTES de continuar al paso 12. Si el feedback es solo cosmético o no cambia nada material, continúa sin mencionarlo; si cambia el summary/bullets, aplica el cambio y sigue.
 12. Genera HTML completo desde template + contenido personalizado
 13. Lee `name` de `config/profile.yml` → normaliza a kebab-case lowercase (e.g. "John Doe" → "john-doe") → `{candidate}`
 14. Escribe HTML a `/tmp/cv-{candidate}-{company}.html`

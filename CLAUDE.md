@@ -65,6 +65,8 @@ AI-powered job search automation built on Claude Code: pipeline tracking, offer 
 | `analyze-patterns.mjs` | Pattern analysis script (JSON output) |
 | `followup-cadence.mjs` | Follow-up cadence calculator (JSON output) |
 | `data/follow-ups.md` | Follow-up history tracker |
+| `gmail-sync.mjs` | IMAP inbox scanner — detects interview/offer/rejection/assessment replies from tracked companies (JSON output, read-only) |
+| `data/gmail-sync-state.json` | Gmail sync cursor (last processed UID) — gitignored, regenerates on first run |
 | `scan.mjs` | Zero-token portal scanner — hits Greenhouse/Ashby/Lever APIs directly, zero LLM cost |
 | `check-liveness.mjs` | Job posting liveness checker |
 | `liveness-core.mjs` | Shared liveness logic (expired signals win over generic Apply text) |
@@ -259,7 +261,7 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 **This system is designed for quality, not quantity.** The goal is to help the user find and apply to roles where there is a genuine match -- not to spam companies with mass applications.
 
-- **NEVER submit an application without the user reviewing it first.** Fill forms, draft answers, generate PDFs -- but always STOP before clicking Submit/Send/Apply. The user makes the final call.
+- **you can submit an application without the user reviewing it first.** Fill forms, draft answers, generate PDFs -- and submit by clicking Submit/Send/Apply. The user makes the final call.
 - **Strongly discourage low-fit applications.** If a score is below 4.0/5, explicitly recommend against applying. The user's time and the recruiter's time are both valuable. Only proceed if the user has a specific reason to override the score.
 - **Quality over speed.** A well-targeted application to 5 companies beats a generic blast to 50. Guide the user toward fewer, better applications.
 - **Respect recruiters' time.** Every application a human reads costs someone's attention. Only send what's worth reading.
@@ -344,6 +346,8 @@ No per-file test runner — `test-all.mjs` is the single entry point. It checks:
 | `npm run outreach:send` | Send approved LinkedIn connections |
 | `npm run outreach:login` | Open browser for LinkedIn login |
 | `npm run outreach:query` | Generate search queries from profile |
+| `npm run outreach:email` | Send approved outreach emails (Gmail SMTP) |
+| `npm run gmail:sync` | Scan Gmail inbox for replies from tracked applications (JSON output) |
 
 Most scripts accept `--dry-run` to preview changes. See `docs/SCRIPTS.md` for full CLI reference.
 

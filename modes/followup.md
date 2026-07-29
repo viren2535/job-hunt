@@ -12,6 +12,26 @@ Track follow-up cadence for active applications. Flag overdue follow-ups, extrac
 - `config/profile.yml` — User profile (name, identity)
 - `cv.md` — CV for proof points in drafts
 
+## Step 0 — Sync Gmail Replies (if configured)
+
+If `config/outreach.yml` has `gmail_sync.enabled: true` and `GMAIL_APP_PASSWORD` (or `email.app_password`) is set, run this first — it catches replies sitting unread in the inbox that never got reflected in the tracker, which is the single biggest cause of "zero interviews" complaints when applications are actually being answered.
+
+```bash
+node gmail-sync.mjs
+```
+
+One-time setup (skip if already done): Gmail Settings -> Forwarding and POP/IMAP -> Enable IMAP. Uses the same `GMAIL_APP_PASSWORD` as `send-email.mjs` — no separate credential needed.
+
+Parse the JSON output: `{ checked, newMatches, matches: [{ appNum, company, role, currentStatus, from, subject, date, classification, snippet }] }`. `classification` is one of `interview`, `offer`, `assessment`, `rejection` (never `ack`/`other` — those are filtered out as noise before reporting).
+
+For each match:
+
+1. **`interview` / `offer` / `rejection`** — show the user the matched email (subject + snippet) and the proposed status change (`currentStatus` -> classification, capitalized to match `templates/states.yml`). On confirmation (or immediately, if operating under a standing "full power / don't ask" directive for this session), update the `Status` column for that `App#` row in `data/applications.md` — this is an UPDATE to an existing row, not a new entry, so it's allowed directly (see Pipeline Integrity rule 2 in `CLAUDE.md`).
+2. **`assessment`** — leave status as-is, but flag it prominently (these have a clock running) and suggest the user act on it now.
+3. Log every actionable match into `data/follow-ups.md` regardless of type, using `Channel = Email` and a `Notes` value like `"Inbound reply — {classification}: {subject}"` — this is what prevents `followup-cadence.mjs` from nagging with a follow-up draft on an application that already got a real reply.
+
+If `gmail_sync` isn't configured or credentials are missing, skip this step silently and proceed to Step 1 — don't block the rest of the cadence workflow on it.
+
 ## Step 1 — Run Cadence Script
 
 Execute:

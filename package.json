@@ -19,7 +19,8 @@
     "outreach:send": "node send-outreach.mjs",
     "outreach:login": "node send-outreach.mjs --login",
     "outreach:query": "node outreach-query-gen.mjs",
-    "outreach:email": "node send-email.mjs"
+    "outreach:email": "node send-email.mjs",
+    "gmail:sync": "node gmail-sync.mjs"
   },
   "keywords": [
     "ai",
@@ -37,7 +38,9 @@
   "license": "MIT",
   "dependencies": {
     "better-sqlite3": "^12.9.0",
+    "imapflow": "^1.6.4",
     "js-yaml": "^4.1.1",
+    "mailparser": "^3.9.14",
     "nodemailer": "^8.0.5",
     "playwright": "^1.58.1"
   }
