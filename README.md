@@ -67,27 +67,7 @@ Everything above is the base system. On top of it, this fork adds:
 
 ## Quick Start
 
-**Fastest way — one command:**
-
-```bash
-npx @santifer/career-ops init
-```
-
-> 💡 `npx` ships with [Node.js](https://nodejs.org) — it runs the installer once,
-> without installing anything globally. No Node yet? Install it first.
-> (Already using a Claude Code / Gemini / Codex CLI? Then you already have it.)
-
-This clones the latest release into `./career-ops` and installs dependencies. Then:
-
-```bash
-cd career-ops
-claude   # or codex / qwen / opencode / agy / grok — open your AI CLI here
-```
-
-**On first launch, career-ops walks you through setup — your CV, profile and target roles — just by chatting. Nothing to edit by hand.**
-
-<details>
-<summary><b>Prefer to set it up manually? (git clone)</b></summary>
+To get the fork additions (gmail-sync, outreach pipeline, reviewer pass), clone this repo directly — the one-command `npx @santifer/career-ops init` installer pulls upstream's latest **release**, which is the base system only, none of what's in [What This Fork Adds](#what-this-fork-adds).
 
 ```bash
 git clone https://github.com/Yuvraj3905/career-ops.git
@@ -122,8 +102,6 @@ claude   # or codex / opencode / qwen / agy / grok
 # "Run the career-ops pdf mode for the latest evaluated role"
 # "Run the career-ops tracker mode and summarize the current statuses"
 ```
-
-</details>
 
 > **The system is designed to be customized by your AI coding CLI itself.** Modes, archetypes, scoring weights, negotiation scripts -- just ask it to change them. It reads the same files it uses, so it knows exactly what to edit.
 
