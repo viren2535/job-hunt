@@ -1,0 +1,5 @@
+{
+  "allow_facts": [
+    "LLM tool use"
+  ]
+}

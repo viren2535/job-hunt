@@ -22,6 +22,16 @@
  * warns with trimming guidance by default. --strict-pages turns that warning
  * into a hard rejection without publishing the render as successful.
  *
+ * A candidate can set their own default instead of passing these flags every
+ * run, via config/profile.yml:
+ *
+ *   cv:
+ *     max_pages: 1
+ *     strict_pages: true
+ *
+ * (see cv-page-budget.mjs). An explicit --max-pages/--strict-pages on the CLI
+ * always overrides the profile default.
+ *
  * Requires: @playwright/test (or playwright) installed.
  * Uses Chromium headless to render the HTML and produce a clean, ATS-parseable PDF.
  */
@@ -33,6 +43,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { randomUUID } from 'node:crypto';
 import { readStyleTokens, injectThemeStyle } from './theme-style.mjs';
+import { readPageBudget } from './cv-page-budget.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PDF_PAGE_MARGIN = '0.6in';
@@ -428,6 +439,7 @@ async function generatePDF() {
   // Parse arguments
   let inputPath, outputPath, format = 'a4', reportNum = '', allowReorder = false;
   let maxPages = 2, maxPagesInput = '2', strictPages = false;
+  let maxPagesExplicit = false, strictPagesExplicit = false;
 
   for (const arg of args) {
     if (arg.startsWith('--format=')) {
@@ -437,14 +449,30 @@ async function generatePDF() {
     } else if (arg.startsWith('--max-pages=')) {
       maxPagesInput = arg.slice('--max-pages='.length);
       maxPages = Number(maxPagesInput);
+      maxPagesExplicit = true;
     } else if (arg === '--allow-reorder') {
       allowReorder = true;
     } else if (arg === '--strict-pages') {
       strictPages = true;
+      strictPagesExplicit = true;
     } else if (!inputPath) {
       inputPath = arg;
     } else if (!outputPath) {
       outputPath = arg;
+    }
+  }
+
+  // config/profile.yml `cv:` block sets the candidate's own default page
+  // budget (see cv-page-budget.mjs) — only applied when the CLI didn't pass
+  // --max-pages/--strict-pages explicitly, so an ad-hoc override always wins.
+  if (!maxPagesExplicit || !strictPagesExplicit) {
+    const profileBudget = readPageBudget(resolve(__dirname, 'config', 'profile.yml'));
+    if (!maxPagesExplicit && profileBudget.maxPages !== undefined) {
+      maxPages = profileBudget.maxPages;
+      maxPagesInput = String(profileBudget.maxPages);
+    }
+    if (!strictPagesExplicit && profileBudget.strictPages !== undefined) {
+      strictPages = profileBudget.strictPages;
     }
   }
 

@@ -6,16 +6,17 @@
 <title>{{NAME}} — CV</title>
 <style>
   /* Themeable tokens (#1837): overridable via config/profile.yml `style:`, which
-     the PDF pipeline injects as a later :root block. Defaults below reproduce the
-     original hardcoded values, so a profile without a `style:` block is unchanged. */
+     the PDF pipeline injects as a later :root block. Defaults below are black
+     and white / grayscale only (no hue-based accent colors) and sized to fill
+     the page rather than leave dead space at the bottom. */
   :root {
-    --accent-color: hsl(187 74% 32%);
+    --accent-color: #1a1a1a;
     --font-family: "Liberation Sans", 'Helvetica Neue', Arial, 'DejaVu Sans', sans-serif;
-    --font-size: 11px;
+    --font-size: 10.5px;
     /* Matches generate-pdf.mjs's PDF_PAGE_MARGIN — the actual PDF page margin
        comes from the later @page rule injectPrintPageCss appends (which reads
        this same variable), so this default must match it exactly. */
-    --page-margin: 0.6in;
+    --page-margin: 0.5in;
   }
   @page { margin: var(--page-margin); }
 
@@ -51,8 +52,8 @@
   body {
     font-family: var(--font-family);
     font-size: var(--font-size);
-    line-height: 1.5;
-    color: #1a1a2e;
+    line-height: 1.55;
+    color: #000000;
     background: #ffffff;
     padding: 0;
     margin: 0;
@@ -70,43 +71,43 @@
 
   /* === HEADER === */
   .header {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   .header h1 {
     font-family: var(--font-family);
-    font-size: 28px;
+    font-size: 27px;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #000000;
     letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     line-height: 1.1;
   }
 
   .header-gradient {
     height: 2px;
-    background: linear-gradient(to right, var(--accent-color), hsl(270, 70%, 45%));
-    border-radius: 1px;
+    background: #000000;
+    border-radius: 0;
     margin-bottom: 10px;
   }
 
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 14px;
+    gap: 6px 12px;
     font-family: var(--font-family);
-    font-size: 10.5px;
-    line-height: 1.4;
-    color: #555;
+    font-size: 10px;
+    line-height: 1.3;
+    color: #333333;
   }
 
   .contact-row a {
-    color: #555;
+    color: #333333;
     text-decoration: none;
   }
 
   .contact-row .separator {
-    color: #ccc;
+    color: #999999;
   }
 
   /* === OPTIONAL PROFILE PHOTO (opt-in, DACH/European markets — #264) ===
@@ -122,7 +123,8 @@
     object-fit: cover;
     margin: 0 0 8px 14px;
     border-radius: 3px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid #cccccc;
+    filter: grayscale(100%);
   }
 
   .cv-photo--rounded { border-radius: 8px; }
@@ -131,7 +133,7 @@
 
   /* === SECTIONS === */
   .section {
-    margin-bottom: 18px;
+    margin-bottom: 13px;
   }
 
   .section-title {
@@ -140,8 +142,8 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--accent-color);
-    border-bottom: 1.5px solid #e2e2e2;
+    color: #000000;
+    border-bottom: 1.5px solid #000000;
     padding-bottom: 4px;
     margin-bottom: 10px;
     line-height: 1.2;
@@ -151,12 +153,12 @@
   .summary-text {
     font-size: var(--font-size);
     line-height: 1.7;
-    color: #2f2f2f;
+    color: #111111;
   }
 
   .summary-text strong {
     font-weight: 700;
-    color: #1a1a1a;
+    color: #000000;
   }
 
   /* Links must never break across lines */
@@ -168,23 +170,23 @@
   .competencies-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .competency-tag {
     font-family: var(--font-family);
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 500;
-    color: hsl(187, 74%, 28%);
-    background: hsl(187, 40%, 95%);
-    padding: 4px 10px;
+    color: #000000;
+    background: #f0f0f0;
+    padding: 3px 9px;
     border-radius: 3px;
-    border: 1px solid hsl(187, 40%, 88%);
+    border: 1px solid #cccccc;
   }
 
   /* === WORK EXPERIENCE === */
   .job {
-    margin-bottom: 14px;
+    margin-bottom: 11px;
   }
 
   .job-header {
@@ -198,26 +200,26 @@
   .job-company {
     font-family: var(--font-family);
     font-size: 12.5px;
-    font-weight: 600;
-    color: hsl(270, 70%, 45%);
+    font-weight: 700;
+    color: #000000;
   }
 
   .job-period {
     font-size: 10.5px;
-    color: #777;
+    color: #444444;
     white-space: nowrap;
   }
 
   .job-role {
     font-size: var(--font-size);
     font-weight: 600;
-    color: #333;
+    color: #000000;
     margin-bottom: 6px;
   }
 
   .job-location {
     font-size: 10px;
-    color: #888;
+    color: #555555;
   }
 
   .job ul {
@@ -228,8 +230,8 @@
   .job li {
     font-size: 10.5px;
     line-height: 1.6;
-    color: #333;
-    margin-bottom: 4px;
+    color: #111111;
+    margin-bottom: 5px;
   }
 
   .job li strong {
@@ -238,37 +240,38 @@
 
   /* === PROJECTS === */
   .project {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .project-title {
     font-family: var(--font-family);
-    font-size: 11.5px;
-    font-weight: 600;
-    color: hsl(270, 70%, 45%);
+    font-size: 12px;
+    font-weight: 700;
+    color: #000000;
   }
 
   .project-badge {
     font-size: 9px;
     font-weight: 500;
-    color: var(--accent-color);
-    background: hsl(187, 40%, 95%);
+    color: #000000;
+    background: #f0f0f0;
     padding: 1px 6px;
     border-radius: 2px;
     margin-left: 6px;
+    border: 1px solid #cccccc;
   }
 
   .project-desc {
     font-size: 10.5px;
-    color: #444;
+    color: #111111;
     margin-top: 3px;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .project-tech {
     font-size: 9.5px;
-    color: #888;
-    margin-top: 3px;
+    color: #555555;
+    margin-top: 4px;
   }
 
   /* === EDUCATION === */
@@ -286,25 +289,25 @@
   .edu-title {
     font-weight: 600;
     font-size: var(--font-size);
-    color: #333;
+    color: #000000;
   }
 
   .edu-org {
-    color: hsl(270, 70%, 45%);
+    color: #000000;
     font-weight: 500;
   }
 
   .edu-year {
-    font-size: 10px;
-    color: #777;
+    font-size: 9.5px;
+    color: #444444;
     white-space: nowrap;
   }
 
   .edu-desc {
-    font-size: 10px;
-    color: #666;
+    font-size: 9.5px;
+    color: #333333;
     margin-top: 2px;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 
   /* === CERTIFICATIONS === */
@@ -320,23 +323,23 @@
   .cert-item > * {
     display: table-cell;
     vertical-align: baseline;
-    padding-bottom: 6px;
+    padding-bottom: 5px;
   }
 
   .cert-title {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 500;
-    color: #333;
+    color: #000000;
   }
 
   .cert-org {
-    color: hsl(270, 70%, 45%);
+    color: #000000;
     white-space: nowrap;
   }
 
   .cert-year {
-    font-size: 10px;
-    color: #777;
+    font-size: 9.5px;
+    color: #444444;
     white-space: nowrap;
     text-align: right;
     width: 44px;
@@ -358,23 +361,23 @@
   .award-item > * {
     display: table-cell;
     vertical-align: baseline;
-    padding-bottom: 6px;
+    padding-bottom: 5px;
   }
 
   .award-title {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 500;
-    color: #333;
+    color: #000000;
   }
 
   .award-org {
-    color: hsl(270, 70%, 45%);
+    color: #000000;
     white-space: nowrap;
   }
 
   .award-year {
-    font-size: 10px;
-    color: #777;
+    font-size: 9.5px;
+    color: #444444;
     white-space: nowrap;
     text-align: right;
     width: 44px;
@@ -384,17 +387,18 @@
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 14px;
+    gap: 7px 14px;
   }
 
   .skill-item {
     font-size: 10.5px;
-    color: #444;
+    line-height: 1.6;
+    color: #111111;
   }
 
   .skill-category {
-    font-weight: 600;
-    color: #333;
+    font-weight: 700;
+    color: #000000;
     font-size: 10.5px;
   }
 
@@ -456,10 +460,6 @@
   html[lang="ar"] .competency-tag,
   html[lang="ar"] .skill-category {
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  }
-
-  html[lang="ar"] .header-gradient {
-    background: linear-gradient(to left, var(--accent-color), hsl(270, 70%, 45%));
   }
 
   html[lang="ar"] .job ul {

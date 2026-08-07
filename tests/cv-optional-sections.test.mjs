@@ -19,8 +19,9 @@ import { stripEmptySections } from '../cv-sections-core.mjs';
 
 console.log('\ncv-sections-core.mjs — optional sections leave no bare header');
 
-const EMPTY = { projects: [], education: [], certifications: [], awards: [] };
+const EMPTY = { competencies: [], projects: [], education: [], certifications: [], awards: [] };
 const FULL = {
+  competencies: ['X'],
   projects: [{ name: 'P' }],
   education: [{ degree: 'D' }],
   certifications: [{ title: 'C' }],
@@ -36,21 +37,25 @@ function check(label, actual, expected) {
 // Assert against the shipped templates so a template edit that renames or
 // reorders a marker fails here instead of silently reviving the bare header.
 const TEMPLATES = [
-  { file: 'templates/cv-template.html', format: 'html', after: 'SKILLS', hasCertifications: true },
-  { file: 'templates/resume-template.html', format: 'html', after: 'SKILLS', hasCertifications: false },
-  { file: 'templates/cv-template.tex', format: 'tex', after: 'Technical Skills', hasCertifications: false },
+  { file: 'templates/cv-template.html', format: 'html', after: 'SKILLS', hasCertifications: true, hasCompetencies: true },
+  { file: 'templates/resume-template.html', format: 'html', after: 'SKILLS', hasCertifications: false, hasCompetencies: true },
+  { file: 'templates/cv-template.tex', format: 'tex', after: 'Technical Skills', hasCertifications: false, hasCompetencies: false },
 ];
 
-for (const { file, format, after, hasCertifications } of TEMPLATES) {
+for (const { file, format, after, hasCertifications, hasCompetencies } of TEMPLATES) {
   const template = readFileSync(join(ROOT, file), 'utf-8');
   const name = file.split('/').pop();
 
   const stripped = stripEmptySections(template, EMPTY, format);
+  const competenciesMarker = '<!-- CORE COMPETENCIES -->'; // html-only; no LaTeX Competencies section exists
   const projectsMarker = format === 'html' ? '<!-- PROJECTS -->' : 'PROJECTS  %';
   const educationMarker = format === 'html' ? '<!-- EDUCATION -->' : 'Education  %';
   const certificationsMarker = '<!-- CERTIFICATIONS -->'; // html-only; no LaTeX Certifications section exists
   const awardsMarker = format === 'html' ? '<!-- AWARDS -->' : 'AWARDS  %';
 
+  if (hasCompetencies) {
+    check(`${name}: empty payload removes the competencies block`, stripped.includes(competenciesMarker), false);
+  }
   check(`${name}: empty payload removes the projects block`, stripped.includes(projectsMarker), false);
   check(`${name}: empty payload removes the education block`, stripped.includes(educationMarker), false);
   if (hasCertifications) {
@@ -64,8 +69,21 @@ for (const { file, format, after, hasCertifications } of TEMPLATES) {
   check(`${name}: populated payload leaves the template unchanged`,
     stripEmptySections(template, FULL, format) === template, true);
 
+  // Competencies empty on its own: it is first among the optional sections in
+  // the HTML templates, so a boundary slip here would swallow Work Experience.
+  if (hasCompetencies) {
+    const onlyComp = stripEmptySections(template, { ...FULL, competencies: [] }, format);
+    check(`${name}: empty competencies alone drops competencies`, onlyComp.includes(competenciesMarker), false);
+    check(`${name}: empty competencies alone keeps projects`, onlyComp.includes(projectsMarker), true);
+    check(`${name}: empty competencies alone keeps education`, onlyComp.includes(educationMarker), true);
+    check(`${name}: empty competencies alone keeps awards`, onlyComp.includes(awardsMarker), true);
+  }
+
   // One empty, one populated: only the empty one goes.
   const onlyEdu = stripEmptySections(template, { ...FULL, education: [] }, format);
+  if (hasCompetencies) {
+    check(`${name}: empty education alone keeps competencies`, onlyEdu.includes(competenciesMarker), true);
+  }
   check(`${name}: empty education alone keeps projects`, onlyEdu.includes(projectsMarker), true);
   check(`${name}: empty education alone drops education`, onlyEdu.includes(educationMarker), false);
   check(`${name}: empty education alone keeps awards`, onlyEdu.includes(awardsMarker), true);
@@ -83,6 +101,9 @@ for (const { file, format, after, hasCertifications } of TEMPLATES) {
   // Awards empty on its own: it is last among the optional sections in the HTML
   // templates, so an end-of-block boundary slip here would swallow Skills.
   const onlyAwards = stripEmptySections(template, { ...FULL, awards: [] }, format);
+  if (hasCompetencies) {
+    check(`${name}: empty awards alone keeps competencies`, onlyAwards.includes(competenciesMarker), true);
+  }
   check(`${name}: empty awards alone keeps projects`, onlyAwards.includes(projectsMarker), true);
   check(`${name}: empty awards alone keeps education`, onlyAwards.includes(educationMarker), true);
   check(`${name}: empty awards alone drops awards`, onlyAwards.includes(awardsMarker), false);
